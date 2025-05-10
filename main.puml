@@ -1,0 +1,68 @@
+@startuml Sitzplangenerator-Aktivitätsdiagramm
+
+|Lehrer/Admin|
+start
+
+:Lehrer erstellt Sitzplan;
+
+:Dem Sitzplan eine ID, einen Raum und einen Kurs zuweisen;
+
+:Namen der Schüler eingeben;
+
+if (Schüler zu Gruppen zuordnen?) then (ja)
+    if(Gruppe erstellen?) then (ja)
+        :Gruppe erstellen;
+        else (nein)
+            :Schüler zu vorhandener Gruppe zuordnen;
+        endif
+    else (nein)
+    endif
+
+if(Regeln definieren?) then (ja)
+    switch (Für wen eine Regel definieren?)
+    case (Schüler)
+        :Regel für Schüler festlegen;
+    case (Gruppe)
+        :Regel für Gruppe festlegen;
+    endswitch
+
+:Regel]
+
+    if (Regel priorisieren?) then (ja)
+        :Regel priorisieren;
+        else (nein)
+        endif
+
+    else (nein)
+    endif
+
+:<b>Sitzplan wird generiert,
+sodass alle Schüler optimal platziert sind,
+alle Regeln prioritätsorientiert berücksichtigt wurden
+und die Sicht zum Lehrerpult optimiert ist;
+
+if(Sitzplan manuell anpassen?) then (ja)
+    :Schüler manuell verschieben;
+    else (nein)
+    endif
+
+if(Sitzplan versionieren) then (ja)
+    :Sitzplan versionieren;
+    else (nein)
+    endif
+
+:Grafischer Sitzplan wird erstellt;
+
+if(Soll der Sitzplan gedruckt werden?) then (ja)
+    :Sitzplan drucken;
+    else (nein)
+    endif
+
+if(Soll der Sitzplan digital verteilt werden?) then (ja)
+    :Sitzplan digital verteilen;
+    else (nein)
+    endif
+
+stop
+
+@enduml
